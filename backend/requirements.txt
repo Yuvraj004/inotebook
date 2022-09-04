@@ -1,4 +1,4 @@
 ->npm init (inititalizing node backend
 ->npm i mongoose ,used for connection to mongodb
--> thunderclient for checking apis..
+-> thunderclient extension for checking apis..
 => nodemon to refresh auomatically

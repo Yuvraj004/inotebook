@@ -3,7 +3,7 @@ const connectToMongo =require('./db');//importing connecttoMonog function from d
 connectToMongo();
 const express = require('express');//importing express
 const app = express();
-const port = 3000;//defining the port of localhost
+const port = 5000;//defining the port of localhost
 
 app.use(express.json())//express. json() is a method inbuilt in express to recognize the incoming Request Object as a JSON Object.
 
