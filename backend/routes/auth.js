@@ -11,7 +11,7 @@ var jwt =require('jsonwebtoken');
 
 var fetchuser = require('../middleware/fetchuser');
 
-
+const JWT_SECRET="yuvi";
 
 //ROUTE-1 create a User using : POST "/api/auth/createuser". Doesn't require auth
 //router. post() refers to POST requests and router. get() referes to GET request. The difference between the two is that a GET request, is requesting data from a specified source and a POST request submits data to a specified resource to be processed.

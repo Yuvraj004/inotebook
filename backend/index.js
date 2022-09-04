@@ -9,7 +9,7 @@ app.use(express.json())//express. json() is a method inbuilt in express to recog
 
 //Available Routes
 app.use("/api/auth", require("./routes/auth"));
-app.use('/api/notes',require('./routes/notes'));
+app.use("/api/notes",require("./routes/notes"));
 app.get("/", (req, res) => {//request and response on the home page
   res.send("Hello World!");
 });
