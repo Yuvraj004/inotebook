@@ -5,6 +5,10 @@ const express = require('express');//importing express
 const app = express();
 const port = 5000;//defining the port of localhost
 
+var cors =require('cors')
+app.use(cors())
+
+
 app.use(express.json())//express. json() is a method inbuilt in express to recognize the incoming Request Object as a JSON Object.
 
 //Available Routes
