@@ -26,19 +26,18 @@ const AddNote = () => {
               className="form-control"
               id="title"
               name="title"
-              placeholder="name@example.com"
+              placeholder="Kanishk Upadhyay"
               onChange={onChange}
             />
           </div>
+
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
             <input type="text" className="form-control" id="description" name="description" onChange={onChange}/>
           </div>
-          <div className="mb-3 form-check">
-            <input type="checkbox" className="form=check-input" id="exampleCheck1"/>
-            <label htmlFor="exampleCheck1" className="form-check-label">
-              Example
-            </label>
+          <div className="mb-3">
+            <label htmlFor="tag" className="form-label">TAG</label>
+            <input type="text" className="form-control" id="tag" name="tag" onChange={onChange}/>
           </div>
           <div className="col-12">
             <button className="btn btn-primary" type="submit" onClick={handleClick}>

@@ -1,6 +1,6 @@
-import { json } from "express";
 import React, { useState } from "react";
 import noteContext from "./noteConnect";
+
 const NoteState =(props)=>{
     const host = "http://localhost:5000";
     const notesInitial=[]
@@ -14,11 +14,13 @@ const NoteState =(props)=>{
               "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNDgyY2EwYTg0Zjk5M2MyMTFkNzcyIn0sImlhdCI6MTY2MjI4ODY4M30.SH3yT9hD821XSFSAHPqbSRA28mT-OIvcwV2ustA0Rvs"
             },
          });
-        console.log(await response.json())
-        setNotes(await response.json())
+         const json=await response.json();
+        console.log(json)
+        setNotes(json)
     }
     //ADD note
     const addNote=async (title,description,tag)=>{
+        //eslint-disable-next-line
         const response = await fetch(`${host}/api/notes/addnote`, {
             method: 'POST',
             headers: {
@@ -35,10 +37,18 @@ const NoteState =(props)=>{
             "date": "2022-09-07T05:41:33.055Z",
             "__v": 0
         };
+        console.log(await response.json)
         setNotes(notes.concat(note))
     }
     //del note
-    const deleteNote=(id)=>{
+    const deleteNote=async(id)=>{
+        const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNDgyY2EwYTg0Zjk5M2MyMTFkNzcyIn0sImlhdCI6MTY2MjI4ODY4M30.SH3yT9hD821XSFSAHPqbSRA28mT-OIvcwV2ustA0Rvs"
+            },
+            });
         const newNotes = notes.filter((note)=>{return note._id !==id})
         setNotes(newNotes)
     }
@@ -51,7 +61,7 @@ const NoteState =(props)=>{
               "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNDgyY2EwYTg0Zjk5M2MyMTFkNzcyIn0sImlhdCI6MTY2MjI4ODY4M30.SH3yT9hD821XSFSAHPqbSRA28mT-OIvcwV2ustA0Rvs"
             },
             body: JSON.stringify({title,description,tag}) });
-            const json = response.json;
+            console.log(response.json);
 
         for (let index = 0; index < notes.length; index++) {
             const e = notes[index];
