@@ -16,7 +16,7 @@ router.get("/fetchallnotes", fetchuser, async (req, res) => {
 });
 
 //ROUTE 2:Create the notes,GET:"api/notes/addnote".login required
-router.get(
+router.post(
   "/addnote",
   fetchuser,
   [
@@ -79,7 +79,7 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
 
 //ROUTE 4 Delete notes
 
-router.delete('/deletenote/:id', fetchuser, async (req, res) => {
+router.delete("/deletenote/:id", fetchuser, async (req, res) => {
     try {
         // Find the note to be delete and delete it
         let note = await Note.findById(req.params.id);
