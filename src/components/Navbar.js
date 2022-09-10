@@ -22,15 +22,24 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <Link className={`nav-link ${location.pathname==="/"? "active":""}`} aria-current="page" to="/">
-              Home
-            </Link>
-            <Link className={`nav-link ${location.pathname==="/about"? "active":""}`} to="/about">
-              About
-            </Link>
-          </div>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className={`nav-link ${location.pathname==="/"? "active":""}`} aria-current="page" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link ${location.pathname==="/about"? "active":""}`} to="/about">
+                About
+              </Link>
+            </li>
+          </ul>
+          <form className="d-flex justify-content-end">
+            <Link className="btn btn-primary mx-2" to="/login" role="button" aria-disabled="true">Login</Link>
+            <Link className="btn btn-primary mx-2" to="/signup" role="button" aria-disabled="true">Signup</Link>
+
+          </form>
         </div>
       </div>
     </nav>

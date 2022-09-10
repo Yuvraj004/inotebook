@@ -27,18 +27,7 @@ const NoteState =(props)=>{
               "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxNDgyY2EwYTg0Zjk5M2MyMTFkNzcyIn0sImlhdCI6MTY2MjI4ODY4M30.SH3yT9hD821XSFSAHPqbSRA28mT-OIvcwV2ustA0Rvs"
             },
             body: JSON.stringify({title,description,tag}) });
-        const json = await response.json;
-        console.log( json)
-        let note={
-            "_id": "63182f0db2ec2d70f6bacd1f",
-            "user": "631482ca0a84f993c211d772",
-            "title": title,
-            "description": description,
-            "tag": tag,
-            "date": "2022-09-07T05:41:33.055Z",
-            "__v": 0
-        };
-        
+        const note = await response.json;
         setNotes(notes.concat(note))
     }
     //del note
