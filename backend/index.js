@@ -3,7 +3,7 @@ const connectToMongo =require('./db');//importing connecttoMonog function from d
 connectToMongo();
 const express = require('express');//importing express
 const app = express();
-const port = 5000;//defining the port of localhost
+const port = 5000;//defining the port of localhost for backend
 
 var cors =require('cors')
 app.use(cors())
