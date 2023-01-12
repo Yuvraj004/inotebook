@@ -3,8 +3,9 @@ import noteContext from "./noteConnect";
 
 const NoteState =(props)=>{
     const host = "http://localhost:5000";
-    const notesInitial=[]
-    const [notes,setNotes]=useState(notesInitial);
+    let notesInitial=[];
+    let [notes,setNotes]=useState(notesInitial);
+
     //get all notes function
     const getNotes =async ()=>{
         const response = await fetch(`${host}/api/notes/fetchallnotes`, {
@@ -14,10 +15,12 @@ const NoteState =(props)=>{
               "auth-token":localStorage.getItem('token')
             },
          });
-         const json=await response.json();
-        console.log(json)
-        setNotes(json)
+        const json=await response.json();
+        // console.log(json);
+        setNotes(json);
+        // console.log(notes);
     }
+
     //ADD note
     const addNote=async (title,description,tag)=>{
         const response = await fetch(`${host}/api/notes/addnote`, {
@@ -27,9 +30,11 @@ const NoteState =(props)=>{
               "auth-token":localStorage.getItem('token')
             },
             body: JSON.stringify({title,description,tag}) });
-        const note = await response.json;
+        const note = response.json;
         setNotes(notes.concat(note))
+        // console.log(notes)
     }
+
     //del note
     const deleteNote=async(id)=>{
         const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
@@ -41,12 +46,12 @@ const NoteState =(props)=>{
             });
         const newNotes = notes.filter((note)=>{return note._id !==id})
         const json = response.json;
-        console.log( json);
+        // console.log( json);
         setNotes(newNotes)
     }
     //edit note
     const editNote =async (id,title,description,tag)=>{
-        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+        await fetch(`${host}/api/notes/updatenote/${id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -54,7 +59,7 @@ const NoteState =(props)=>{
             },
             body: JSON.stringify({title,description,tag}) 
         });
-        console.log(await response.json);
+        // console.log(await response.json);
         let newNotes = JSON.parse(JSON.stringify(notes))
         for (let index = 0; index < newNotes.length; index++) {
             const e = newNotes[index];

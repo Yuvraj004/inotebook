@@ -1,7 +1,6 @@
 import React from "react";
 // import {useEffect} from 'react';
 import { Link,useLocation } from "react-router-dom";
-
 const Navbar = () => {
   let location = useLocation();
   // useEffect(()=>{
@@ -36,8 +35,8 @@ const Navbar = () => {
             </li>
           </ul>
           <form className="d-flex justify-content-end">
-            <Link className="btn btn-primary mx-2" to="/login" role="button" aria-disabled="true">Login</Link>
-            <Link className="btn btn-primary mx-2" to="/signup" role="button" aria-disabled="true">Signup</Link>
+            <Link className="btn btn-primary mx-2" to={(localStorage.getItem('token'))?"/logout":"/login"} role="button" aria-disabled="true">{(localStorage.getItem('token'))?'Logout':'Login'}</Link>
+            <Link style={localStorage.getItem('token')?{'display':'none'}:{'display':'block'}}  className="btn btn-primary mx-2" to="/signup" role="button" aria-disabled="true">Signup</Link>
 
           </form>
         </div>

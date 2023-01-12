@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState,useCallback } from "react";
 import noteContext from "../context/notes/noteConnect";
 import AddNote from "./AddNote";
 import Noteitem from "./Noteitem";
@@ -7,7 +7,9 @@ const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, getNotes,editNote } = context;
   const navi =useNavigate();
-
+  const logResult = useCallback(() => {
+    return 2 + 2;
+  }, []);
   useEffect(() => {
     if(localStorage.getItem('token')){
       getNotes();
@@ -16,7 +18,7 @@ const Notes = (props) => {
       navi("/login")
     }
     //eslint-disable-next-line
-  }, []);
+  }, [logResult]);
 
   const ref = useRef(null);
   const refClose = useRef(null);
@@ -127,14 +129,14 @@ const Notes = (props) => {
             </div>
             <div className="modal-footer">
               <button ref={refClose} type="button"className="btn btn-secondary"data-bs-dismiss="modal">Close</button>
-              <button disabled={note.etitle.length<5 || note.edescription.length<5} onClick={handleClick} type="button"className="btn btn-primary" >Update Note</button>
+              <button disabled={(note.etitle.length)<5 || (note.edescription.length)<5} onClick={handleClick} type="button" className="btn btn-primary" >Update Note</button>
             </div>
           </div>
         </div>
       </div>
       <div className="row my-4">
         <h1>Your notes</h1>
-        {notes.length===0 && "No Notes to Display"}
+        {Notes.length===0 && "No Notes to Display"}
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
