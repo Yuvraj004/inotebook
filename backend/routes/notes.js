@@ -4,6 +4,17 @@ const fetchuser = require("../middleware/fetchuser");
 const Note = require("../models/Note");
 const { body, validationResult } = require("express-validator");
 
+//ROUTE 0:Test Ciphering
+router.get("/ciphering", fetchuser, async (req, res) => {
+  try {
+    
+    // res.json(notes);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal server error Occured");
+  }
+});
+
 //ROUTE 1:GET all the notes
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
   try {

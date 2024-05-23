@@ -1,6 +1,6 @@
 
 const mongoose =require('mongoose');//importing mongoose functon from mongoose library used for editing mongodb
-const mongoURI="mongodb://localhost:27017/inotebook"//connecting while creating a datbase locally
+const mongoURI="mongodb+srv://yuvrajchat:IJUSWzRDesGiMYv2@cluster0.w6hbhbu.mongodb.net/"//connecting while creating a datbase locally
 
 //connectto mongo function to check whether database is connected or not
 const connectToMongo = async()=>{
