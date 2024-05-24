@@ -5,7 +5,19 @@ const NoteState =(props)=>{
     const host = "http://localhost:5000";
     let notesInitial=[];
     let [notes,setNotes]=useState(notesInitial);
-
+    let [data,SetData] = useState("");
+    const cipherNotes = async (data)=>{
+        const response = await fetch(`${host}/api/notes/ciphering`,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify(data),
+        });
+        const json = await response.json();
+        console.log(json);
+        SetData(json);
+    }
     //get all notes function
     const getNotes =async ()=>{
         const response = await fetch(`${host}/api/notes/fetchallnotes`, {
@@ -73,7 +85,7 @@ const NoteState =(props)=>{
         setNotes(newNotes);
     }
     return(
-        <noteContext.Provider value={{notes,setNotes,addNote,deleteNote,editNote,getNotes}}>
+        <noteContext.Provider value={{notes,setNotes,addNote,deleteNote,editNote,getNotes,cipherNotes,data}}>
             {props.children}
         </noteContext.Provider>
     )

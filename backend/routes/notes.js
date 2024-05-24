@@ -3,12 +3,14 @@ const router = express.Router();
 const fetchuser = require("../middleware/fetchuser");
 const Note = require("../models/Note");
 const { body, validationResult } = require("express-validator");
+const { default: VernamCipher } = require("../middleware/vernamCipher");
 
 //ROUTE 0:Test Ciphering
-router.get("/ciphering", fetchuser, async (req, res) => {
+router.get("/ciphering", async (req, res) => {
   try {
-    
-    // res.json(notes);
+    const inputData = req.body;
+    const cipherText = VernamCipher(inputData);
+    res.json(cipherText);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal server error Occured");

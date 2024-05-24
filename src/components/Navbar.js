@@ -33,6 +33,11 @@ const Navbar = () => {
                 About
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className={`nav-link ${location.pathname==="/cipher"? "active":""}`} to="/cipher">
+                Cipher
+              </Link>
+            </li>
           </ul>
           <form className="d-flex justify-content-end">
             <Link className="btn btn-primary mx-2" to={(localStorage.getItem('token'))?"/logout":"/login"} role="button" aria-disabled="true">{(localStorage.getItem('token'))?'Logout':'Login'}</Link>
