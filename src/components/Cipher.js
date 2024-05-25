@@ -1,14 +1,25 @@
-import React, { useState, useContext } from "react";
-import noteContext from "../context/notes/noteConnect";
+import React, { useState } from "react";
 
 const Cipher = (props) => {
-  const context = useContext(noteContext);
-  const { cipherNotes } = context;
+  const [cipherData,setCipherData] = useState("")
   const [data, setData] = useState({
     title: "",
     description: "",
     data: ""
   });
+  const cipherNotes = async (data)=>{
+    const host = "http://localhost:5000";
+      const response = await fetch(`${host}/api/notes/ciphering`,{
+          method:'POST',
+          headers:{
+              'Content-Type':'application/json',
+          },
+          body:JSON.stringify(data),
+      });
+      const json = await response.json();
+      console.log(json);
+      setCipherData(json);
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -74,6 +85,8 @@ const Cipher = (props) => {
         </form>
         <div>
           {JSON.stringify(data)}
+          <p></p>
+          {JSON.stringify(cipherData)}
         </div>
       </div>
     </div>
