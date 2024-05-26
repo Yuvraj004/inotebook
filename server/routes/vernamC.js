@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-// const { default: VernamCipher } = require("../middleware/vernamCipher");
 require('dotenv').config();
+const fetchuser = require("../middleware/fetchuser");
+const Note = require("../models/Note");
 
 //ROUTE 0:Test Ciphering
 router.post("/ciphering", async (req, res) => {
@@ -33,14 +34,15 @@ router.post("/ciphering", async (req, res) => {
     }
 
     // Example usage
-    const data = "HELLO";
-    const encrypted = VernamCipher(data);
-    console.log("Encrypted:", encrypted);
-    console.log('reached');
+    // const data = "HELLO";
+    // const encrypted = VernamCipher(data);
+    // console.log("Encrypted:", encrypted);
+    // console.log('reached');
+
     try {
         const inputData = req.body.data;
         const cipherText = VernamCipher(inputData);
-        console.log(cipherText);
+        // console.log(cipherText);
         res.json(cipherText);
     } catch (error) {
         console.error(error.message);
@@ -48,5 +50,15 @@ router.post("/ciphering", async (req, res) => {
     }
 });
 
+//ROUTE 1:GET all the notes
+router.get("/fetchallnotes", fetchuser, async (req, res) => {
+    try {
+      const notes = await Note.find({ user: req.user.id });
+      res.json(notes);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server error Occured");
+    }
+});
 
 module.exports = router;

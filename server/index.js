@@ -12,7 +12,7 @@ app.use(express.json())//express. json() is a method inbuilt in express to recog
 app.use("/vernamC", require("./routes/vernamC"));
 app.get("/", (req, res) => {//request and response on the home page
     res.json("Hello World!");
-    console.log("Hello World!");
+    // console.log("Hello World!");
 });
 
 app.listen(port, () => {//the app. listen() function is used to bind and listen the connections on the specified host and port. This method is identical to Node's http. Server.

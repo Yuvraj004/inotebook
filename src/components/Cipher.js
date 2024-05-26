@@ -10,14 +10,14 @@ const Cipher = (props) => {
   const cipherNotes = async (data)=>{
     const host = "http://localhost:5000";
 
-    const res =await fetch(`${host}/`,{
-      method:'GET',
-      headers:{
-          'Content-Type':'application/json',
-      }
-    })
-    const chec = await res.json();
-    console.log(chec);
+    // const res =await fetch(`${host}/`,{
+    //   method:'GET',
+    //   headers:{
+    //       'Content-Type':'application/json',
+    //   }
+    // })
+    // const chec = await res.json();
+    // console.log(chec);
     
       const response = await fetch(`${host}/vernamC/ciphering`,{
           method:'POST',
