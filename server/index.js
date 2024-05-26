@@ -1,8 +1,3 @@
-const connectToMongo =require('./db');
-//importing connecttoMonog function from db.js
-
-connectToMongo();
-
 const express = require('express');//importing express
 const app = express();
 const port = 5000;//defining the port of localhost for backend

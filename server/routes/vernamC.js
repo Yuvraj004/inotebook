@@ -4,6 +4,12 @@ require('dotenv').config();
 const fetchuser = require("../middleware/fetchuser");
 const Note = require("../models/Note");
 
+const { MongoClient } = require("mongodb");
+
+const mongoURI="mongodb+srv://yuvrajchat:IJUSWzRDesGiMYv2@cluster0.w6hbhbu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+const client = new MongoClient(mongoURI);
+
 function VernamCipher(data) {
     const KEY = process.env.KEY;
     // console.log(KEY)
@@ -55,8 +61,14 @@ router.post("/ciphering", async (req, res) => {
 //ROUTE 1:GET all the notes
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
     try {
-      const notes = await Note.find({ user: req.user.id });
-      res.json(notes);
+      client.db('test').collection('user', async function (err,collection){
+        if( err ) throw err;
+        
+        await collection.find({ user: req.user.id },function(err,notes){
+          res.json(notes);
+          if(err) throw err;
+        });
+      })
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server error Occured");
@@ -64,29 +76,28 @@ router.get("/fetchallnotes", fetchuser, async (req, res) => {
 });
 
 //ROUTE 2:Create the notes,GET:"api/notes/addnote".login required
-router.post(
-    "/addnote",
-    fetchuser,
-    [
-      body("title", "Enter a valid Title").isLength({ min: 3 }), //custom msg can also be done
-      body("description", "Must be atleast five characters").isLength({ min: 5 }),
-    ],
-    async (req, res) => {
+router.post("/addnote",fetchuser,async (req, res) => {
       try {
         const { title, description, tag } = req.body;
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
           return res.status(400).json({ errors: errors.array() });
         }
-  
+        
         const note = new Note({
           title,
           description,
           tag,
           user: req.user.id,
         });
-        const savedNote = await note.save();
-        res.json(savedNote);
+        client.db('test').collection('notes', async function(err, collection){
+          if( err ) throw err;
+          await collection.insertOne(note,function(err,savedNote){
+            if( err ) throw err;
+            res.json(savedNote);
+          });          
+        })
+
       } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal server error Occured");
