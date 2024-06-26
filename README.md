@@ -1,3 +1,6 @@
+# Deployments
+This project is deployed on : [WebSite](https://inotebook-7kqe.onrender.com)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
