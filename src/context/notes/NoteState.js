@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import noteContext from "./noteConnect";
 
 const NoteState =(props)=>{
-    const host = "http://localhost:5000";
+    const host = "https://servernb.onrender.com";
     let notesInitial=[];
     let [notes,setNotes]=useState(notesInitial);
     let [data,SetData] = useState("");
