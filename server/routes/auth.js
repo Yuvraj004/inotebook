@@ -87,7 +87,6 @@ router.post('/createuser',[
 })
 
 
-
 //ROUTE-2 : Authenicating a user
 router.post('/login',[
   body('email','Enter a valid Email').isEmail(),//custom msg can also be done

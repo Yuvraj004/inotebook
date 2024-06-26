@@ -8,7 +8,7 @@ const NoteState =(props)=>{
     
     //get all notes function
     const getNotes =async ()=>{
-        const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+        const response = await fetch(`${host}/vernamC/fetchallnotes`,{
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ const NoteState =(props)=>{
             },
          });
         const json=await response.json();
-        // console.log(json);
+        console.log(json);
         setNotes(json);
         // console.log(notes);
     }

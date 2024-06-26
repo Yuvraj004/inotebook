@@ -1,6 +1,20 @@
 const express = require('express');//importing express
 const app = express();
-const port = 5000;//defining the port of localhost for backend
+const port = 5000;
+
+
+const mongoose = require('mongoose');
+
+mongoose.set("strictQuery", false);
+
+
+const uri = 'mongodb+srv://yuvrajchat:IJUSWzRDesGiMYv2@cluster0.w6hbhbu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'; // Replace with your connection string
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(uri);
+}
+
 
 var cors =require('cors')
 app.use(cors())

@@ -61,14 +61,18 @@ router.post("/ciphering", async (req, res) => {
 //ROUTE 1:GET all the notes
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
     try {
-      client.db('test').collection('user', async function (err,collection){
-        if( err ) throw err;
+      console.log(req.user.id);
+      const dbNotes = User.find({ user: req.user.id });
+      console.log(dbNotes);
+      res.json(dbNotes).status(201);
+      // client.db('test').collection('user', async function (err,collection){
+      //   if( err ) throw err;
         
-        await collection.find({ user: req.user.id },function(err,notes){
-          res.json(notes);
-          if(err) throw err;
-        });
-      })
+      //   await collection.find({ user: req.user.id },function(err,notes){
+      //     res.json(notes);
+      //     if(err) throw err;
+      //   });
+      // })
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server error Occured");
